@@ -22,7 +22,8 @@
     <include file="$(find neo_simulation)/launch/$(arg robot_type)/$(arg robot_type)_rviz.launch"/>
   </group> -->
 
-  <include file="$(find ur_gazebo)/launch/ur5_bringup.launch">
+  <include file="$(dirname)/ur_gazebo/ur5_bringup.launch">
+    <arg name='tf_prefix' value=''/>
   </include>
 
   <include file="$(find ur5_moveit_config)/launch/moveit_planning_execution.launch">
