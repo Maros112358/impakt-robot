@@ -26,11 +26,11 @@
     <arg name='tf_prefix' value=''/>
   </include>
 
-  <include file="$(find ur5_moveit_config)/launch/moveit_planning_execution.launch">
+  <include file="$(dirname)/ur5_moveit_config/launch/moveit_planning_execution.launch">
     <arg name='sim' value='true'/>
   </include>
 
-  <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch">
+  <include file="$(dirname)/ur5_moveit_config/launch/moveit_rviz.launch">
   </include>
 
 </launch>
