@@ -1,76 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-    <arg name="rviz" default="true"/>
-    <arg name="autonomous_navigation" default="true"/>
+  <!-- <arg name="robot_type" default="mp_500"/>
+  <arg name="robot_world" default="neo_track1.world"/>
 
-    <arg name="robot_world" default="neo_track1.world"/>
-    <arg name="world_name_global" default="$(find neo_simulation)/worlds/$(arg robot_world)"/>
-    <arg name="software_joystick" value="true"/>
-    <arg name="world" default="empty"/> 
-    <arg name="paused" default="false"/>
-    <arg name="use_sim_time" default="true"/>
-    <arg name="gui" default="true"/>
-    <arg name="headless" default="false"/>
-    <arg name="debug" default="false"/>
+  <arg name="rviz" default="true"/>
 
-  <!---=================================================================================================================================================================-->
 
-    <!-- Basic Simulation -->
-    
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-      <arg name="world_name" value="$(arg world_name_global)"/>
-      <arg name="paused" value="$(arg paused)"/>
-      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
-      <arg name="gui" value="$(arg gui)"/>
-      <arg name="headless" value="$(arg headless)"/>
-      <arg name="debug" value="$(arg debug)"/>
-    </include>
+  <arg name="autonomous_navigation" default="true"/>
 
-    <!--Robot description to param server-->
-    <param name="robot_description" command="$(find xacro)/xacro '$(dirname)/impakt_robot.urdf.xacro'" />
+  <include file="$(find neo_simulation)/launch/$(arg robot_type)/$(arg robot_type)_simulation_basic.launch">
+    <arg name="world_name_global" value="$(find neo_simulation)/worlds/$(arg robot_world)"/>
+  </include>
 
-    <node name="mp_500_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-    args="-urdf -param robot_description -model robot" />
-    
-    <!--To publish Joint and Robot state-->
-    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="rate" value="100.0" />
-    </node> -->
-
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-    <param name="publish_frequency" value="100.0" />
-    </node>
-
-  <!--Neo control Package  **To use teleop-keyboard and joystick, neo_control package must be cloned to the workspace**--> 
-  
-  <!--if arg software_joystick is set to true-->
-
-  <group if="$(arg software_joystick)">
-    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard"  output="screen">
-    </node>
+  <group if="$(arg autonomous_navigation)">
+    <include file="$(find neo_simulation)/launch/$(arg robot_type)/$(arg robot_type)_autonomous_navigation.launch"/>
   </group>
 
-  <!---=================================================================================================================================================================-->
 
-    <!-- Autonomous Navigation -->
-    <group if="$(arg autonomous_navigation)">
-        <include file="$(find neo_simulation)/launch/mp_500/mp_500_autonomous_navigation.launch"/>
-    </group>
+  <group if="$(arg rviz)">
+    <include file="$(find neo_simulation)/launch/$(arg robot_type)/$(arg robot_type)_rviz.launch"/>
+  </group> -->
 
-    <!-- RVIZ -->
-    <group if="$(arg rviz)">
-        <include file="$(find neo_simulation)/launch/mp_500/mp_500_rviz.launch"/>
-    </group>
+  <include file="$(find ur_gazebo)/launch/ur5_bringup.launch">
+  </include>
 
-  <!---=================================================================================================================================================================-->
+  <include file="$(find ur5_moveit_config)/launch/moveit_planning_execution.launch">
+    <arg name='sim' value='true'/>
+  </include>
 
+  <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch">
+  </include>
 
-  <arg name="controller_config_file" default="$(dirname)/impakt_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
-  <arg name="controllers" default="joint_state_controller eff_joint_traj_controller"/>
-  <arg name="stopped_controllers" default="joint_group_eff_controller"/>
-  <rosparam file="$(arg controller_config_file)" command="load"/>
-
-
-    
 </launch>
