@@ -28,15 +28,15 @@
     </include>
 
     <!--Robot description to param server-->
-    <param name="robot_description" command="$(find xacro)/xacro '$(find neo_simulation)/impakt_robot.urdf.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro '$(dirname)/impakt_robot.urdf.xacro'" />
 
     <node name="mp_500_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
     args="-urdf -param robot_description -model robot" />
     
     <!--To publish Joint and Robot state-->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="rate" value="100.0" />
-    </node>
+    </node> -->
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <param name="publish_frequency" value="100.0" />
@@ -65,4 +65,12 @@
 
   <!---=================================================================================================================================================================-->
 
+
+  <arg name="controller_config_file" default="$(dirname)/impakt_controllers.yaml" doc="Config file used for defining the ROS-Control controllers."/>
+  <arg name="controllers" default="joint_state_controller eff_joint_traj_controller"/>
+  <arg name="stopped_controllers" default="joint_group_eff_controller"/>
+  <rosparam file="$(arg controller_config_file)" command="load"/>
+
+
+    
 </launch>
