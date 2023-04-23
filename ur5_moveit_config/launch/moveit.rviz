@@ -76,11 +76,11 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          base_link:
+          ur5_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          base_link_inertia:
+          ur5_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -172,11 +172,11 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          base_link:
+          ur5_base_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          base_link_inertia:
+          ur5_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -228,7 +228,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_link
+    Fixed Frame: ur5_base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -256,7 +256,7 @@ Visualization Manager:
       Name: Current View
       Near Clip Distance: 0.009999999776482582
       Pitch: 0.45979705452919006
-      Target Frame: base_link
+      Target Frame: ur5_base_link
       Value: XYOrbit (rviz)
       Yaw: 0.9717636108398438
     Saved: ~
