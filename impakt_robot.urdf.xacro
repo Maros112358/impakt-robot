@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg robot_model)_robot">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="impakt_robot">
   <!--
     This is a top-level xacro instantiating the Gazebo-specific version of the
     'ur_robot' macro (ie: 'ur_robot_gazebo') and passing it values for all its
@@ -29,6 +29,11 @@
     NOTE: this imports the Gazebo-wrapper main macro, NOT the regular
           xacro macro (which is hosted by ur_description).
   -->
+
+  <xacro:include filename="$(find neo_simulation)/robots/mp_500/mp_500.urdf.xacro"/>
+  <origin xyz="2 2 0"/>
+
+
   <xacro:include filename="$(find ur_gazebo)/urdf/ur_macro.xacro"/>
 
   <!--Declare arguments -->
@@ -71,11 +76,10 @@
     here. Create a NEW xacro instead and decide whether you need to add
     a 'world' link there.
   -->
-  <link name="world"/>
   <joint name="world_joint" type="fixed">
-    <parent link="world"/>
+    <parent link="base_link"/>
     <child link="ur5_base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0 0 0.5" rpy="0 0 90"/>
   </joint>
 
   <link name="tool0_controller"/>
@@ -84,4 +88,5 @@
     <child link="tool0_controller"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
+
 </robot>
