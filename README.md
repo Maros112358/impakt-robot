@@ -11,6 +11,7 @@ To run the robot, ROS packages for following robots are required:
 Run the following commands to install the package
 ```
 roscd <your_ws>
+cd src
 git clone git@github.com:Maros112358/impakt-robot.git
 catkin_make
 ```
