@@ -34,7 +34,7 @@
   <origin xyz="2 2 0"/>
 
 
-  <xacro:include filename="$(find ur_gazebo)/urdf/ur_macro.xacro"/>
+  <xacro:include filename="$(find impakt-robot)/ur_macro.xacro"/>
 
   <!--Declare arguments -->
   <xacro:arg name="joint_limit_params" default=""/>
@@ -79,7 +79,7 @@
   <joint name="world_joint" type="fixed">
     <parent link="base_link"/>
     <child link="ur5_base_link"/>
-    <origin xyz="0 0 0.5" rpy="0 0 90"/>
+    <origin xyz="-0.2 0 0.34" rpy="0 0 185"/>
   </joint>
 
   <link name="tool0_controller"/>
