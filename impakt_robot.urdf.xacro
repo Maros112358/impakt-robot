@@ -34,7 +34,7 @@
   <origin xyz="2 2 0"/>
 
 
-  <xacro:include filename="$(find ur_gazebo)/urdf/ur_macro.xacro"/>
+  <xacro:include filename="$(find impakt-robot)/ur_macro.xacro"/>
 
   <!--Declare arguments -->
   <xacro:arg name="joint_limit_params" default=""/>
