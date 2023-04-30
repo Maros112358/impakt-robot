@@ -17,16 +17,16 @@ git clone https://github.com/neobotix/neo_srvs.git
 git clone https://github.com/neobotix/neo_common.git
 git clone https://github.com/neobotix/neo_localization.git
 git clone https://github.com/neobotix/slam_gmapping.git
-sudo apt-get install ros-noetic-ros-controllers
-sudo apt-get install ros-noetic-gazebo-ros-control
-sudo apt-get install ros-noetic-navigation
-sudo apt-get install ros-noetic-joy
-sudo apt-get install ros-noetic-teleop-twist-keyboard
-sudo apt-get install ros-noetic-amcl
-sudo apt-get install ros-noetic-neo-local-planner
-sudo apt-get install ros-noetic-map-server
-sudo apt-get install ros-noetic-move-base
-sudo apt-get install ros-noetic-universal-robots
+sudo apt-get install ros-noetic-ros-controllers=0.21.1-1focal.20230306.100040
+sudo apt-get install ros-noetic-gazebo-ros-control=2.9.2-1focal.20230216.004103
+sudo apt-get install ros-noetic-navigation=1.17.3-1focal.20230216.021527
+sudo apt-get install ros-noetic-joy=1.15.1-1focal.20230215.231441
+sudo apt-get install ros-noetic-teleop-twist-keyboard=1.0.0-1focal.20230215.213345
+sudo apt-get install ros-noetic-amcl=1.17.3-1focal.20230215.231533
+sudo apt-get install ros-noetic-neo-local-planner=1.0.1-1focal.20230216.015503
+sudo apt-get install ros-noetic-map-server=1.17.3-1focal.20230215.213811
+sudo apt-get install ros-noetic-move-base=1.17.3-1focal.20230216.021300
+sudo apt-get install ros-noetic-universal-robots=1.3.1-1focal.20230413.061438
 cd ..
 catkin_make
 . devel/setup.bash
