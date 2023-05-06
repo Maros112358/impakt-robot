@@ -30,7 +30,7 @@
           xacro macro (which is hosted by ur_description).
   -->
 
-  <xacro:include filename="$(find neo_simulation)/robots/mp_500/mp_500.urdf.xacro"/>
+  <xacro:include filename="$(find impakt-robot)/neo_simulation/robots/mp_500/mp_500.urdf.xacro"/>
   <origin xyz="2 2 0"/>
 
 
@@ -77,9 +77,9 @@
     a 'world' link there.
   -->
   <joint name="world_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="ur5_base_link"/>
-    <origin xyz="-0.2 0 0.34" rpy="0 0 185"/>
+      <parent link="above_body_platform_link"/>
+      <child link="ur5_base_link"/>
+      <origin xyz="0.05 0 0.075" rpy="0 0 0"/>
   </joint>
 
   <link name="tool0_controller"/>
